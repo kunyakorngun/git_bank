@@ -25,4 +25,4 @@ if st.session_state.all_records != {}:
     x, y = zip(*count_color.items())
     df = pd.DataFrame({"shade": x, "Amount": y, "color": x})
     st.bar_chart(df, x="shade", y="Amount", color="color")
-print(data)
+    print('test logging')
