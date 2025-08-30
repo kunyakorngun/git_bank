@@ -19,13 +19,10 @@ with st.form(key="form1"):
         if selected_name:
             st.session_state.all_records[selected_name] = selected_color
 
-st.write(st.session_state.all_records)
-
-data = st.session_state.all_records.values()
-count_color = Counter(data)
-# print(count_color)
-x, y = zip(*count_color.items())
-
-df = pd.DataFrame({"shade": x, "Amount": y, "color": x})
-# st.bar_chart(df.set_index("Color"))
-st.bar_chart(df, x="shade", y="Amount", color="color")
+if st.session_state.all_records != {}:
+    data = list(st.session_state.all_records.values())
+    count_color = Counter(data)
+    x, y = zip(*count_color.items())
+    df = pd.DataFrame({"shade": x, "Amount": y, "color": x})
+    st.bar_chart(df, x="shade", y="Amount", color="color")
+    print('test logging')
