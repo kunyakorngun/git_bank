@@ -1,7 +1,12 @@
-import streamlit as st
+import streamlit as st 
+import pandas as pd
+from numpy.random import default_rng as rng
+from collections import Counter
 
 if 'all_records' not in st.session_state:
     st.session_state.all_records = {}
+    
+st.title("Color Picker")
 
 with st.form(key="form1"):
     col1, col2 = st.columns([9,1], vertical_alignment="center")
@@ -16,3 +21,11 @@ with st.form(key="form1"):
 
 st.write(st.session_state.all_records)
 
+data = st.session_state.all_records.values()
+count_color = Counter(data)
+# print(count_color)
+x, y = zip(*count_color.items())
+
+df = pd.DataFrame({"shade": x, "Amount": y, "color": x})
+# st.bar_chart(df.set_index("Color"))
+st.bar_chart(df, x="shade", y="Amount", color="color")
