@@ -21,11 +21,11 @@ with st.form(key="form1"):
 
 st.write(st.session_state.all_records)
 
-data = st.session_state.all_records.values()
+data = list(st.session_state.all_records.values())
 count_color = Counter(data)
-# print(count_color)
 x, y = zip(*count_color.items())
-
+# print(data)
+# print(x)
+# print(y)
 df = pd.DataFrame({"shade": x, "Amount": y, "color": x})
-# st.bar_chart(df.set_index("Color"))
 st.bar_chart(df, x="shade", y="Amount", color="color")
